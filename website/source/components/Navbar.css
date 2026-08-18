@@ -1,0 +1,57 @@
+/* Glas-Effekt für Navbar Hintergrund */
+.glass-navbar {
+    background-color: rgba(255, 255, 255, 0.13) !important;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Branding (Logo/Text) */
+  .glass-navbar .navbar-brand {
+    font-family: "Arial", cursive;
+    color: #43e71e !important;
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+  
+  .glass-navbar .navbar-brand:hover {
+    color: #fec503 !important;
+  }
+  
+  /* Navigation rechts ausrichten */
+  .glass-navbar .navbar-collapse {
+    justify-content: flex-end;
+  }
+  
+  /* Links in Navbar */
+  .glass-navbar .nav-link {
+    color: white !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 0 15px;
+    transition: color 0.3s ease;
+  }
+  
+  .glass-navbar .nav-link:hover,
+  .glass-navbar .nav-link:focus {
+    color: #23a2f6 !important;
+  }
+  
+  /* Hamburger Menü Button */
+  .glass-navbar .navbar-toggler {
+    border-color: #1ee2e7 !important;
+  }
+  
+  .glass-navbar .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%281255, 255, 255, 0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  }
+  
+  /* Responsive Verhalten */
+  /* (Bootstrap regelt Collapse und Display, hier nur optische Feinheiten) */
+  @media (max-width: 992px) {
+    .glass-navbar .nav-link {
+      padding: 10px 0;
+    }
+  }
+  

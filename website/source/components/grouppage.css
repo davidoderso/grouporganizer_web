@@ -1,0 +1,365 @@
+.group-content {
+    position: relative;
+    z-index: 10;
+
+    min-height: 100vh;
+
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 40px;
+
+    padding: 60px;
+}
+
+/* =========================
+   Gruppenliste
+   ========================= */
+
+.groups-list {
+    max-width: 700px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.group-card {
+    padding: 20px;
+    margin-bottom: 15px;
+
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+
+    color: white;
+
+    cursor: pointer;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.group-card:hover {
+    transform: translateY(-3px);
+
+    background: rgba(255, 255, 255, 0.18);
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.group-card h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.group-card p {
+    margin-bottom: 12px;
+
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.group-card span {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.15);
+
+    font-size: 0.85rem;
+}
+
+
+/* =========================
+   Gruppe erstellen
+   ========================= */
+
+.create-group {
+    width: 300px;
+}
+
+.create-group form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.create-group input,
+.create-group textarea {
+    padding: 10px;
+}
+
+.create-group textarea {
+    min-height: 100px;
+}
+
+
+/* =========================
+   Gruppen-Detailansicht
+   ========================= */
+
+.group-detail {
+    position: relative;
+
+    width: min(700px, 100%);
+
+    margin: 0 auto;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(15px);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    color: white;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+
+    animation: groupDetailIn 0.25s ease;
+}
+
+
+/* Zurück */
+
+.group-detail > button:first-child {
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 1rem;
+
+    cursor: pointer;
+
+    padding: 5px 0;
+
+    margin-bottom: 20px;
+}
+
+.group-detail > button:first-child:hover {
+    opacity: 0.7;
+}
+
+
+/* Gruppenname */
+
+.group-detail h1 {
+    margin-top: 0;
+    margin-bottom: 15px;
+
+    font-size: 2rem;
+}
+
+
+/* Beschreibung */
+
+.group-detail > p {
+    min-height: 60px;
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    background: rgba(0, 0, 0, 0.12);
+
+    color: rgba(255, 255, 255, 0.9);
+}
+
+
+/* =========================
+   Buttons im Detailfenster
+   ========================= */
+
+.group-actions {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 15px;
+
+    margin-top: 30px;
+}
+
+.group-actions button {
+    min-height: 80px;
+
+    border: none;
+
+    border-radius: 15px;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    color: white;
+
+    font-size: 1rem;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+.group-actions button:hover {
+    transform: translateY(-3px);
+
+    background: rgba(255, 255, 255, 0.22);
+}
+
+
+/* =========================
+   Animation
+   ========================= */
+
+@keyframes groupDetailIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================
+   Mobile
+   ========================= */
+
+@media (max-width: 800px) {
+
+    .group-content {
+        grid-template-columns: 1fr;
+
+        padding: 30px 20px;
+    }
+
+    .groups-list {
+        max-width: 100%;
+    }
+
+    .create-group {
+        width: 100%;
+    }
+
+    .group-detail {
+        width: auto;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .group-actions {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+.groups {
+    width: 100%;
+}
+
+.group-wrapper {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.group-card {
+    padding: 20px;
+    margin-bottom: 0;
+
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+
+    color: white;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-radius 0.2s ease;
+}
+
+.group-card:hover {
+    background: rgba(255, 255, 255, 0.16);
+}
+
+
+/* Geöffneter Bereich */
+
+.group-detail {
+    overflow: hidden;
+
+    padding: 0 20px;
+
+    background: rgba(255, 255, 255, 0.07);
+
+    border-radius: 0 0 12px 12px;
+
+    color: white;
+
+    animation: openGroup 0.25s ease forwards;
+}
+
+.group-detail-content {
+    padding: 20px 0;
+}
+
+
+/* Buttons */
+
+.group-actions {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 12px;
+
+    margin-top: 20px;
+}
+
+.group-actions button {
+    padding: 15px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    color: white;
+
+    cursor: pointer;
+
+    transition: background 0.2s ease;
+}
+
+.group-actions button:hover {
+    background: rgba(255, 255, 255, 0.22);
+}
+
+
+/* Öffnungsanimation */
+
+@keyframes openGroup {
+    from {
+        opacity: 0;
+        max-height: 0;
+    }
+
+    to {
+        opacity: 1;
+        max-height: 400px;
+    }
+}

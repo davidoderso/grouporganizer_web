@@ -1,0 +1,54 @@
+.register-form {
+    min-height: 600px;
+    width: 520px; /* Deutlich breiter als Login */
+    background-color: rgba(255,255,255,0.13);
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 12px;
+    backdrop-filter: blur(12px);
+    border: 2px solid rgba(255,255,255,0.15);
+    box-shadow: 0 0 48px rgba(8,7,16,0.55);
+    padding: 54px 43px;
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    z-index: 2;
+  }
+  .register-form h1 {
+    font-size: 36px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 22px;
+  }
+  .register-form label {
+    display: block;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .register-form input[type="text"],
+  .register-form input[type="email"],
+  .register-form input[type="password"],
+  .register-form input[type="date"] {
+    display: block;
+    height: 48px;
+    width: 100%;
+    background-color: rgba(255,255,255,0.09);
+    border-radius: 4px;
+    padding: 0 12px;
+    margin-top: 8px;
+    font-size: 15px;
+    font-weight: 300;
+    color: #fff;
+    outline: none;
+    border: none;
+  }
+  .register-form input[type="checkbox"] {
+    margin-top: 12px;
+    width: 20px;
+    height: 20px;
+    accent-color: #23a2f6;
+  }
+  

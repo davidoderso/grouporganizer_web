@@ -1,0 +1,108 @@
+.auth-bg {
+  min-height: 100vh;
+  /*background: linear-gradient(135deg, #1845ad, #23a2f6 40%, #ff512f 70%, #f09819 100%); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px;
+}
+
+.auth-container {
+  position: relative;
+  width: 570px;
+  height: 540px;
+  background: rgba(255,255,255,0.13);
+  border-radius: 14px;
+  box-shadow: 0 0 48px rgba(8,7,16,0.55);
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+/* Toggle Bar */
+.form-toggle {
+  display: flex;
+  justify-content: center;
+  background: rgba(255,255,255,0.08);
+  padding: 14px 0 0 0;
+  z-index: 2;
+}
+.form-toggle button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 19px;
+  font-weight: 500;
+  padding: 12px 24px;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.25s;
+}
+.form-toggle .active {
+  border-bottom: 3px solid #23a2f6;
+  color: #23a2f6;
+  font-weight: 600;
+}
+
+/* Sliding Forms */
+.form-slider {
+  display: flex;
+  width: 1000px;    /* 2x Form-Breite */
+  transform: translateX(0);
+  transition: transform 0.7s cubic-bezier(.43,.09,.17,.97);
+}
+.form-slider.slide-left {
+  transform: translateX(-50%);
+}
+.login-form, .register-form {
+  background: transparent;
+  padding: 35px 34px;
+  width: 50%;
+  min-width: 350px;
+  border: none;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Glassmorphism-Effekt */
+}
+.register-form {
+  min-width: 470px;
+  padding-right: 24px;
+}
+
+.login-form input, .register-form input {
+  display: block;
+  height: 48px;
+  width: 100%;
+  background-color: rgba(255,255,255,0.08);
+  border-radius: 3px;
+  padding: 0 11px;
+  margin-top: 8px;
+  font-size: 15px;
+  font-weight: 300;
+  color: #fff;
+  outline: none;
+  border: none;
+}
+.login-form button, .register-form button {
+  margin-top: 34px;
+  width: 100%;
+  background-color: #fff;
+  color: #080710;
+  padding: 13px 0;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+}
+.nav-link {
+  background: none;
+  border: none;
+  color: #23a2f6;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 1em;
+  margin-top: 8px;
+}
+

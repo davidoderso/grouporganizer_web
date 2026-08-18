@@ -1,0 +1,79 @@
+.profile-gesamt-con,
+.profile-page {
+    position: relative;
+    min-height: 100vh;
+}
+
+.profile-container {
+    position: relative;
+    z-index: 10;
+
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+
+    padding: 60px 0;
+}
+
+.profile-section {
+    margin-bottom: 25px;
+    padding: 25px;
+
+    border-radius: 18px;
+
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    color: white;
+}
+
+.profile-section h1,
+.profile-section h2 {
+    margin-top: 0;
+}
+
+.profile-info {
+    display: grid;
+    gap: 8px;
+}
+
+.profile-info p {
+    margin: 0;
+}
+
+.profile-section button {
+    margin: 6px;
+    padding: 10px 18px;
+
+    border: none;
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+.danger-zone {
+    border: 1px solid rgba(255, 80, 80, 0.5);
+}
+
+.delete-button {
+    background: rgba(180, 30, 30, 0.8);
+    color: white;
+}
+
+.delete-confirm {
+    margin-top: 20px;
+    padding: 20px;
+
+    border-radius: 12px;
+
+    background: rgba(120, 0, 0, 0.25);
+}
+
+.profile-error {
+    padding: 40px;
+
+    text-align: center;
+
+    color: white;
+}
