@@ -14,14 +14,14 @@ interface Group {
 export default function GroupPage() {
     const [groups, setGroups] = useState<Group[]>([]);
     const [selectedGroup, setSelectedGroup] = useState<Group | null>(null);
-
+    const [originalGroup, setOriginalGroup] = useState<Group | null>(null);
     const [loading, setLoading] = useState(true);
-
     const [showCreateGroup, setShowCreateGroup] = useState(false);
-
     const [groupName, setGroupName] = useState("");
     const [groupDescription, setGroupDescription] = useState("");
     const [isFamilyGroup, setIsFamilyGroup] = useState(false);
+    // Gruppeninfos bearbeiten:
+    const [editingDescription, setEditingDescription] = useState(false);
 
     // temporär
     const [showComingSoon, setShowComingSoon] = useState(false);
@@ -112,6 +112,82 @@ export default function GroupPage() {
         }
     }
 
+    async function updateGroup() {
+        if (!selectedGroup || !originalGroup) {
+            return
+        };
+
+        const changes: Partial<Group> = {};
+        
+        if (selectedGroup.groupname !== originalGroup.groupname) {
+            changes.groupname = selectedGroup.groupname;
+        }
+
+        if (selectedGroup.groupdescription !== originalGroup.groupdescription) {
+            changes.groupdescription = selectedGroup.groupdescription;
+        }
+
+        if (selectedGroup.isfamilygroup !== originalGroup.isfamilygroup) {
+            changes.isfamilygroup = selectedGroup.isfamilygroup;
+        }
+
+        if (Object.keys(changes).length === 0) {
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API_URL}group/group_functions.php`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        action: "updateGroup",
+                        userid: userid,
+                        groupid: selectedGroup.groupid,
+                        changes: changes,
+                    }),
+                }
+            );
+
+            const data = await response.json();
+
+        if (response.ok && data.success) {
+
+            // Gruppenliste aktualisieren
+            setGroups((prevGroups) =>
+                prevGroups.map((group) =>
+                    group.groupid === selectedGroup.groupid
+                        ? { ...selectedGroup }
+                        : group
+                )
+            );
+
+            // Neuer Zustand ist jetzt der gespeicherte Zustand
+            setOriginalGroup({ ...selectedGroup });
+
+        } else {
+            console.error(
+                "Gruppe konnte nicht aktualisiert werden:",
+                data.message
+            );
+
+            alert(
+                "Gruppe konnte nicht aktualisiert werden: " +
+                    (data.message || "Unbekannter Fehler")
+            );
+        }
+
+    } catch (error) {
+        console.error(
+            "Fehler beim Aktualisieren der Gruppe:",
+            error
+        );
+
+        alert("Fehler beim Aktualisieren der Gruppe.");
+        }
+    }
     return (
         <main className="group-page">
             <AnimatedBackground />
@@ -146,8 +222,12 @@ export default function GroupPage() {
                                     onClick={() => {
                         if (isSelected) {
                             setSelectedGroup(null);
+                            setOriginalGroup(null);
+                            setEditingDescription(false);
                         } else {
-                            setSelectedGroup(group);
+                            setSelectedGroup({...group});
+                            setOriginalGroup({...group});
+                            setEditingDescription(false);
                         }
                     }}
                 >
@@ -167,13 +247,42 @@ export default function GroupPage() {
                     <div className="group-detail">
                         <div className="group-detail-content">
 
-                            <p>
-                                {group.groupdescription ||
-                                    "Keine Beschreibung vorhanden."}
-                            </p>
+                        {editingDescription ? (
+    <div className="description-editor">
+
+        <textarea
+            value={selectedGroup?.groupdescription || ""}
+            onChange={(e) => {
+                if (!selectedGroup) return;
+
+                setSelectedGroup({
+                    ...selectedGroup,
+                    groupdescription: e.target.value,
+                });
+            }}
+            autoFocus
+        />
+
+        <button
+            type="button"
+            onClick={async () => {
+                await updateGroup();
+                setEditingDescription(false);
+            }}
+        >
+            ✓
+        </button>
+
+    </div>
+) : (
+    <p>
+        {selectedGroup?.groupdescription ||
+            "Keine Beschreibung vorhanden."}
+    </p>
+)}
 
                             <div className="group-actions">
-                                <button onClick={()=> setShowComingSoon(true)}>
+                                <button onClick={()=> setEditingDescription(true)}>
                                     Beschreibung bearbeiten
                                     
                                 </button>
