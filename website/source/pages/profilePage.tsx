@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AnimatedBackground from "../assets/Animated_bg";
+import { useTheme } from "../assets/ThemeContext";
 import "../components/profile.css";
 
 export default function ProfilePage() {
     const navigate = useNavigate();
-
+    const { isDarkMode,toggleDarkMode, colors, textVariants} = useTheme();
     const storedUser = JSON.parse(
         localStorage.getItem("user") ?? "{}"
     );
@@ -42,14 +43,15 @@ export default function ProfilePage() {
 
                 {!user ? (
                     <div className="profile-error">
-                        <h1>Fehler</h1>
+                        <h1 style={textVariants.title}>Fehler</h1>
 
-                        <p>
+                        <p style={textVariants.body}>
                             Deine Benutzerdaten konnten nicht gefunden
                             werden. Bitte melde dich erneut an.
                         </p>
 
-                        <button onClick={() => navigate("/")}>
+                        <button onClick={() => navigate("/")}
+                            style={textVariants.subtitle}>
                             Zum Login
                         </button>
                     </div>
@@ -57,27 +59,27 @@ export default function ProfilePage() {
                     <>
                         {/* PROFIL */}
                         <section className="profile-section">
-                            <h1>
+                            <h1 style={textVariants.title}>
                                 Profil von {user.username}
                             </h1>
 
                             <div className="profile-info">
-                                <p>
+                                <p style={textVariants.body}>
                                     <strong>Benutzername:</strong>{" "}
                                     {user.username}
                                 </p>
 
-                                <p>
+                                <p style={textVariants.body}>
                                     <strong>Vorname:</strong>{" "}
                                     {user.first_name}
                                 </p>
 
-                                <p>
+                                <p style={textVariants.body}>
                                     <strong>E-Mail:</strong>{" "}
                                     {user.email}
                                 </p>
 
-                                <p>
+                                <p style={textVariants.body}>
                                     <strong>Geburtsdatum:</strong>{" "}
                                     {user.birthday || "Nicht angegeben"}
                                 </p>
@@ -87,17 +89,20 @@ export default function ProfilePage() {
 
                         {/* PROFILEINSTELLUNGEN */}
                         <section className="profile-section">
-                            <h2>Profileinstellungen</h2>
+                            <h2 style={textVariants.title}>Profileinstellungen</h2>
 
-                            <button>
+                            <button
+                            style={textVariants.subtitle}>
                                 Benutzername ändern
                             </button>
 
-                            <button>
+                            <button
+                            style={textVariants.subtitle}>
                                 Vorname ändern
                             </button>
 
-                            <button>
+                            <button
+                            style={textVariants.subtitle}>
                                 Geburtsdatum ändern
                             </button>
                         </section>
@@ -105,33 +110,36 @@ export default function ProfilePage() {
 
                         {/* ERSCHEINUNGSBILD */}
                         <section className="profile-section">
-                            <h2>Erscheinungsbild</h2>
+                            <h2 style={textVariants.title}>Erscheinungsbild</h2>
 
-                            <p>
+                            <p style={textVariants.body}>
                                 Hier kannst du später das
                                 Erscheinungsbild deiner Website ändern.
                             </p>
 
-                            <button>
-                                Darkmode / Whitemode
+                            <button onClick={toggleDarkMode}
+                            style={textVariants.subtitle}>
+                                {isDarkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
                             </button>
                         </section>
 
 
                         {/* FREUNDE */}
                         <section className="profile-section">
-                            <h2>Freunde</h2>
+                            <h2 style={textVariants.title}>Freunde</h2>
 
-                            <p>
+                            <p style={textVariants.body}>
                                 Füge Freunde hinzu und verwalte deine
                                 Freundschaften.
                             </p>
 
-                            <button>
+                            <button
+                            style={textVariants.subtitle}>
                                 Freunde verwalten
                             </button>
 
-                            <button>
+                            <button
+                            style={textVariants.subtitle}>
                                 Freund hinzufügen
                             </button>
                         </section>
@@ -139,9 +147,10 @@ export default function ProfilePage() {
 
                         {/* SICHERHEIT */}
                         <section className="profile-section">
-                            <h2>Sicherheit</h2>
+                            <h2 style={textVariants.title}>Sicherheit</h2>
 
-                            <button>
+                            <button
+                            style={textVariants.subtitle}>
                                 Passwort ändern
                             </button>
                         </section>
@@ -151,7 +160,7 @@ export default function ProfilePage() {
                         <section className="profile-section danger-zone">
                             <h2></h2>
 
-                            <p>
+                            <p style={textVariants.body}>
                                 Das Löschen deines Accounts kann nicht
                                 rückgängig gemacht werden.
                             </p>
@@ -167,11 +176,11 @@ export default function ProfilePage() {
                                 </button>
                             ) : (
                                 <div className="delete-confirm">
-                                    <h3>
+                                    <h3 style={textVariants.title}>
                                         Account wirklich löschen?
                                     </h3>
 
-                                    <p>
+                                    <p style={textVariants.body}>
                                         Dein Account und deine
                                         zugehörigen Daten werden
                                         endgültig gelöscht.
@@ -188,6 +197,7 @@ export default function ProfilePage() {
                                         onClick={() =>
                                             setShowDeleteConfirm(false)
                                         }
+                                        style={textVariants.subtitle}
                                     >
                                         Abbrechen
                                     </button>
@@ -198,7 +208,8 @@ export default function ProfilePage() {
 
                         {/* LOGOUT */}
                         <section className="profile-section logout-section">
-                            <button onClick={logOut}>
+                            <button onClick={logOut}
+                            style={textVariants.subtitle}>
                                 Ausloggen
                             </button>
                         </section>
