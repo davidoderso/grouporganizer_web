@@ -2,6 +2,7 @@ import { useEffect, useState, type SubmitEvent } from "react";
 import AnimatedBackground from "../assets/Animated_bg";
 import { API_URL } from "../assets/backend_api";
 import ComingSoon from "../assets/ComingSoon";
+import { useTheme } from "../assets/ThemeContext";
 import '../components/grouppage.css';
 
 interface Group {
@@ -12,6 +13,9 @@ interface Group {
 }
 
 export default function GroupPage() {
+    // Theme Text/Background
+    const { colors, textVariants, isDarkMode} = useTheme();
+    // ----------------------------------------------------
     const [groups, setGroups] = useState<Group[]>([]);
     const [selectedGroup, setSelectedGroup] = useState<Group | null>(null);
     const [originalGroup, setOriginalGroup] = useState<Group | null>(null);
@@ -198,12 +202,12 @@ export default function GroupPage() {
                 <section className="groups-list">
                     <>
                 
-                        <h1>Meine Gruppen</h1>
+                        <h1 style={textVariants.title}>Meine Gruppen</h1>
 
                         {loading ? (
-                            <p>Gruppen werden geladen...</p>
+                            <p style={textVariants.title}>Gruppen werden geladen...</p>
                         ) : groups.length === 0 ? (
-                            <p>
+                            <p style={textVariants.body}>
                                 Du bist momentan in keiner Gruppe.
                             </p>
                         ) : (
@@ -231,9 +235,9 @@ export default function GroupPage() {
                         }
                     }}
                 >
-                    <h2>{group.groupname}</h2>
+                    <h2 style={textVariants.title}>{group.groupname}</h2>
 
-                    <p>
+                    <p style={textVariants.body}>
                         {group.groupdescription ||
                             "Keine Beschreibung vorhanden."}
                     </p>
@@ -275,14 +279,15 @@ export default function GroupPage() {
 
     </div>
 ) : (
-    <p>
+    <p style={textVariants.body}>
         {selectedGroup?.groupdescription ||
             "Keine Beschreibung vorhanden."}
     </p>
 )}
 
                             <div className="group-actions">
-                                <button onClick={()=> setEditingDescription(true)}>
+                                <button onClick={()=> setEditingDescription(true)}
+                                    style={textVariants.subtitle}>
                                     Beschreibung bearbeiten
                                     
                                 </button>
@@ -292,7 +297,8 @@ export default function GroupPage() {
         message="Die Beschreibungfunktion ist noch nicht fertig."
     />
 )}
-                                <button onClick={()=> setShowComingSoon(true)}>
+                                <button onClick={()=> setShowComingSoon(true)}
+                                    style={textVariants.subtitle}>
                                     Mitglieder
                                 </button>
                                 {showComingSoon && (
@@ -301,7 +307,8 @@ export default function GroupPage() {
         message="Die Mitgliederfunktion ist noch nicht fertig."
     />
 )}
-                                <button onClick={()=> setShowComingSoon(true)}>
+                                <button onClick={()=> setShowComingSoon(true)}
+                                    style={textVariants.subtitle}>
                                     Todos
                                 </button>
                                 {showComingSoon && (
@@ -310,7 +317,8 @@ export default function GroupPage() {
         message="Die To-Do-Funktion ist noch nicht fertig."
     />
 )}
-                                <button onClick={()=> setShowComingSoon(true)}>
+                                <button onClick={()=> setShowComingSoon(true)}
+                                    style={textVariants.subtitle}>
                                     Kalender
                                 </button>
 
@@ -339,7 +347,7 @@ export default function GroupPage() {
 
                     {!showCreateGroup ? (
                         <>
-                            <h2>Neue Gruppe</h2>
+                            <h2 style={textVariants.title}>Neue Gruppe</h2>
 
                             <button
                                 onClick={() => setShowCreateGroup(true)}
@@ -349,7 +357,7 @@ export default function GroupPage() {
                         </>
                     ) : (
                         <form onSubmit={handleCreateGroup}>
-                            <h2>Gruppe erstellen</h2>
+                            <h2 style={textVariants.title}>Gruppe erstellen</h2>
 
                             <input
                                 type="text"

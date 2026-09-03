@@ -3,8 +3,8 @@ export const lightColors = {
     background: '#EAECC6',
     primary: '#2BC0E4',
     secondary: '#41BBA6',
-    text: '#222',
-    textSecondary: '#555',
+    text: '#36589B',
+    textSecondary: '#36589B',
     card: '#fff',
     border: '#ddd',
     error: '#e74c3c'
@@ -14,7 +14,7 @@ export const lightColors = {
     background: '#191654',
     primary: '#41BBA6',
     secondary: '#2BC0E4',
-    text: '#fff',
+    text: '#EAECC6',
     textSecondary: '#bbb',
     card: '#232323',
     border: '#444',
@@ -29,7 +29,7 @@ export const lightColors = {
     },
     subtitle: {
       fontSize: 18,
-      fontWeight: '600',
+      fontWeight: '300',
       color: lightColors.textSecondary
     },
     body: {
